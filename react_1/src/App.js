@@ -61,13 +61,25 @@ const App = () => {
   ]
 
 
+
+  const addExpenseItemHandler = expenseItemInputData => {
+
+    expenseItems.push(expenseItemInputData)
+    const expenseItemsIndexLast = expenseItems.length - 1
+    expenseItems[expenseItemsIndexLast].expenseId += expenseItemsIndexLast + 1
+
+    console.log(expenseItems)
+
+  }
+
+
   return (
 
     <div className="App">
 
 
 
-      <AddExpenseItem />
+      <AddExpenseItem onAddExpenseItem={ addExpenseItemHandler } />
 
       <ExpenseItems expenseItems={ expenseItems } />
 

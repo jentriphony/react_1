@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 
 
-const AddExpenseItemForm = () => {
+const AddExpenseItemForm = dataProps => {
 
 
 
@@ -18,6 +18,8 @@ const AddExpenseItemForm = () => {
   //   expenseAmountInputValue: '',
   //   expenseDateInputValue: ''
   // })
+
+
 
   const expenseTitleInputHandler = titleInputEvent => {
 
@@ -92,27 +94,45 @@ const AddExpenseItemForm = () => {
 
   }
 
+  const ExpenseItemFormSubmitHandler = ItemFormSubmitEvent => {
+
+    ItemFormSubmitEvent.preventDefault();
+
+    const expenseInputValues = {
+      expenseTitleInputValue: expenseTitleInputValue,
+      expenseAmountInputValue: expenseAmountInputValue,
+      expenseDateInputValue: new Date(expenseDateInputValue)
+    }
+
+    setExpenseTitleInputValue('')
+    setExpenseAmountInputValue('')
+    setExpenseDateInputValue('')
+
+    dataProps.onAddExpenseItem(expenseInputValues)
+
+  }
+
 
   return (
 
-    <form>
+    <form onSubmit={ ExpenseItemFormSubmitHandler }>
 
 
 
       <div className='add-expense-item__controls'>
         <div className='add-expense-item__control'>
           <label>Title</label>
-          <input type='text' onInput={ expenseTitleInputHandler } />
+          <input type='text' value={ expenseTitleInputValue } onInput={ expenseTitleInputHandler } />
         </div>
 
         <div className='add-expense-item__control'>
           <label>Amount</label>
-          <input type='number' min='0.01' step='0.01' onInput={ expenseAmountInputHandler } />
+          <input type='number' value={ expenseAmountInputValue } min='0.01' step='0.01' onInput={ expenseAmountInputHandler } />
         </div>
 
         <div className='add-expense-item__control'>
           <label>Date</label>
-          <input type='date' min='2000-08-01' max='2005-08-01' onInput={ expenseDateInputHandler } />
+          <input type='date' value={ expenseDateInputValue } min='2000-08-01' max='2005-08-01' onInput={ expenseDateInputHandler } />
         </div>
       </div>
 

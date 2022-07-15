@@ -4,8 +4,23 @@ import AddExpenseItemForm from './AddExpenseItemForm'
 
 
 
-const AddExpenseItem = () => {
+const AddExpenseItem = dataProps => {
 
+
+
+  const addExpenseItemHandler = expenseItemInputData => {
+
+    const expenseItemInputData_ = {
+      expenseId: 'expense_',
+      expenseDate: expenseItemInputData.expenseDateInputValue,
+      expenseTitle: expenseItemInputData.expenseTitleInputValue,
+      expenseCurrense: '$',
+      expenseAmount: expenseItemInputData.expenseAmountInputValue
+    }
+
+    dataProps.onAddExpenseItem(expenseItemInputData_)
+
+  }
 
 
   return (
@@ -14,7 +29,7 @@ const AddExpenseItem = () => {
 
 
 
-      <AddExpenseItemForm />
+      <AddExpenseItemForm onAddExpenseItem={ addExpenseItemHandler } />
 
 
 
