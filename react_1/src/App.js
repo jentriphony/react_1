@@ -25,69 +25,74 @@
 // export default App;
 import './App.css';
 
-import ExpenseItems from './components/Expenses/ExpenseItems'
+import { useState } from 'react'
 import AddExpenseItem from './components/AddExpenseItem/AddExpenseItem'
+import ExpenseItems from './components/Expenses/ExpenseItems'
 
 
+
+const initialExpenseItems = [
+
+  {
+    expenseId: 'expense_item_1',
+    expenseDate: new Date(2000, 7, 1),
+    expenseTitle: 'item_1',
+    expenseCurrense: '$',
+    expenseAmount: 100
+  },
+  {
+    expenseId: 'expense_item_2',
+    expenseDate: new Date(2001, 7, 1),
+    expenseTitle: 'item_2',
+    expenseCurrense: '$',
+    expenseAmount: 200
+  },
+  {
+    expenseId: 'expense_item_3',
+    expenseDate: new Date(2002, 7, 1),
+    expenseTitle: 'item_3',
+    expenseCurrense: '$',
+    expenseAmount: 300
+  }
+
+]
 
 const App = () => {
 
 
 
-  const expenseItems = [
-
-    {
-      expenseId: 'expense_1',
-      expenseDate: new Date(2000, 7, 1),
-      expenseTitle: 'item_1',
-      expenseCurrense: '$',
-      expenseAmount: 100
-    },
-    {
-      expenseId: 'expense_2',
-      expenseDate: new Date(2001, 7, 1),
-      expenseTitle: 'item_2',
-      expenseCurrense: '$',
-      expenseAmount: 200
-    },
-    {
-      expenseId: 'expense_3',
-      expenseDate: new Date(2002, 7, 1),
-      expenseTitle: 'item_3',
-      expenseCurrense: '$',
-      expenseAmount: 300
-    }
-
-  ]
+	const [expenseItems, setExpenseItems] = useState(initialExpenseItems)
 
 
 
   const addExpenseItemHandler = expenseItemInputData => {
 
-    expenseItems.push(expenseItemInputData)
-    const expenseItemsIndexLast = expenseItems.length - 1
-    expenseItems[expenseItemsIndexLast].expenseId += expenseItemsIndexLast + 1
+		setExpenseItems(previousExpenseItems => {
+			expenseItemInputData.expenseId += previousExpenseItems.length + 1
+			return [
+				...previousExpenseItems,
+				expenseItemInputData
+			]
+		})
 
-    console.log(expenseItems)
-
-  }
+	}
 
 
   return (
 
-    <div className="App">
+<div className="App">
 
 
 
-      <AddExpenseItem onAddExpenseItem={ addExpenseItemHandler } />
+ <AddExpenseItem onAddExpenseItem={ addExpenseItemHandler } />
 
-      <ExpenseItems expenseItems={ expenseItems } />
+ <ExpenseItems expenseItems={ expenseItems } />
 
 
 
-    </div>
+</div>
 
-  );
+  )
 
 
 
@@ -95,4 +100,4 @@ const App = () => {
 
 
 
-export default App;
+export default App

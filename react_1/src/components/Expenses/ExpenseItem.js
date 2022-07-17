@@ -1,6 +1,5 @@
 import './ExpenseItem.css'
 
-import { useState } from 'react'
 import ExpenseItemSCard from './../UI/ExpenseItemSCard'
 import CustomDate from './../UI/CustomDate'
 
@@ -12,40 +11,28 @@ const ExpenseItem = dataProps => {
 
   const expenseItem = dataProps.expenseItem
 
-  const [expenseTitle, setExpenseTitle] = useState(expenseItem.expenseTitle)
-
-
-
-  const changeTitleClickHandler = () => {
-
-    setExpenseTitle('Updated')
-
-  }
-
 
   return (
 
-    <ExpenseItemSCard className='expense-item'>
+<li>
 
 
 
-      <CustomDate date={ expenseItem.expenseDate } />
+ <ExpenseItemSCard className='expense-item'>
+  <CustomDate date={ expenseItem.expenseDate } />
 
-      <div className='expense-item__description'>
-        <h2>{ expenseTitle }</h2>
-        
-        <div className='expense-item__price'>
-          { expenseItem.expenseCurrense + expenseItem.expenseAmount }
-        </div>
-      </div>
+  <div className='expense-item__description'>
+   <h2>{ expenseItem.expenseTitle }</h2>
 
-      <button onClick={ changeTitleClickHandler }>
-        Change Title
-      </button>
+   <div className='expense-item__price'>
+    { expenseItem.expenseCurrense + expenseItem.expenseAmount }
+   </div>
+  </div>
+ </ExpenseItemSCard>
 
 
 
-    </ExpenseItemSCard>
+</li>
 
   )
 

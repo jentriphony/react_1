@@ -1,24 +1,14 @@
 import './../UI/ExpenseItemsFilter.css'
 
-import { useState } from 'react'
-
 
 
 const ExpenseItemsFilterYear = dataProps => {
 
 
 
-  const [expenseItemsFilterYearValue, setExpenseItemsFilterYearValue] = useState('2005')
-
-
-
   const expenseItemsFilterYearHandler = itemsFilterYearEvent => {
 
-    const itemsFilterYearValue = itemsFilterYearEvent.target.value
-
-    setExpenseItemsFilterYearValue(itemsFilterYearValue)
-
-    dataProps.onExpenseItemsFilterYear(itemsFilterYearValue)
+    dataProps.onExpenseItemsFilterYear(itemsFilterYearEvent.target.value)
 
   }
 
@@ -29,10 +19,10 @@ const ExpenseItemsFilterYear = dataProps => {
 
 
 
-      <div className='expense-items-filter_control'>
-        <label>{ dataProps.expenseItemsFilterBy }</label>
+      <div className='expense-items-filter__control'>
+        <label>{ dataProps.expenseItemsFilterOptions }</label>
 
-        <select value={ expenseItemsFilterYearValue } onChange={ expenseItemsFilterYearHandler }>
+       <select value={ dataProps.expenseItemsFilterYearValue } onChange={ expenseItemsFilterYearHandler }>
           <option value='2005'>2005</option>
 
           <option value='2004'>2004</option>

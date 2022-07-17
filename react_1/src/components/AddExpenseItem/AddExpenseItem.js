@@ -1,5 +1,6 @@
 import './AddExpenseItem.css'
 
+import { useState } from 'react'
 import AddExpenseItemForm from './AddExpenseItemForm'
 
 
@@ -8,10 +9,22 @@ const AddExpenseItem = dataProps => {
 
 
 
-  const addExpenseItemHandler = expenseItemInputData => {
+
+	const [addExpenseItemFormToggleVisibilityStatus, setAddExpenseItemFormToggleVisibilityStatus] = useState(false)
+
+
+
+	const addExpenseItemFormToggleVisibilityHandler = () => {
+
+    setAddExpenseItemFormToggleVisibilityStatus(!addExpenseItemFormToggleVisibilityStatus)
+
+
+	}
+
+	const addExpenseItemHandler = expenseItemInputData => {
 
     const expenseItemInputData_ = {
-      expenseId: 'expense_',
+      expenseId: 'expense_item_',
       expenseDate: expenseItemInputData.expenseDateInputValue,
       expenseTitle: expenseItemInputData.expenseTitleInputValue,
       expenseCurrense: '$',
@@ -25,18 +38,27 @@ const AddExpenseItem = dataProps => {
 
   return (
 
-    <div className='add-expense-item'>
+<div className='add-expense-item'>
+
+
+ { addExpenseItemFormToggleVisibilityStatus &&
+ <AddExpenseItemForm onAddExpenseItemCalcel={ addExpenseItemFormToggleVisibilityHandler } onAddExpenseItem={ addExpenseItemHandler } /> }
+
+ { !addExpenseItemFormToggleVisibilityStatus &&
+ <div className='add-expense-item__actions'>
+  <button
+   type='button'
+   onClick={ addExpenseItemFormToggleVisibilityHandler }
+  >
+   Add expense item
+  </button>
+ </div> }
 
 
 
-      <AddExpenseItemForm onAddExpenseItem={ addExpenseItemHandler } />
-
-
-
-    </div>
+</div>
 
   )
-  //
 
 
 

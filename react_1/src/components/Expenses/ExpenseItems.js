@@ -1,45 +1,59 @@
 import './ExpenseItems.css'
 
+import { useState } from 'react'
 import ExpenseItemSCard from './../UI/ExpenseItemSCard'
-import ExpenseItem from './ExpenseItem'
 import ExpenseItemsFilterYear from './ExpenseItemsFilterYear'
+import ExpenseItemsFiltered from './ExpenseItemsFiltered'
+import ExpenseItemsChart from './ExpenseItemsChart'
 
 
 
 const ExpenseItems = dataProps => {
 
 
-
   const expenseItems = dataProps.expenseItems
+
+  const [expenseItemsFilterYearValue, setExpenseItemsFilterYearValue] = useState('2005')
+  const filteredExpenseItems = expenseItems.filter(expenseItem => {
+   	return expenseItem.expenseDate.getFullYear() === Number(expenseItemsFilterYearValue)
+	})
+//	const [filteredExpenseItems, setFilteredExpenseItems] = useState(expenseItems.filter(expenseItem => {
+//		return expenseItem.expenseDate.getFullYear() === Number(expenseItemsFilterYearValue)
+//	}))
 
 
 
   const expenseItemsFilterYearHandler = itemsFilterYearValue => {
 
-    //
+    setExpenseItemsFilterYearValue(itemsFilterYearValue)
+//    setFilteredExpenseItems(expenseItems.filter(expenseItem => {
+//		  return expenseItem.expenseDate.getFullYear() === Number(itemsFilterYearValue)
+//	  }))
 
   }
 
 
   return (
 
-    <div>
+<div>
 
 
 
-       <ExpenseItemSCard className='expense-items'>
-			 <ExpenseItemsFilterYear expenseItemsFilterBy='Filter by year' onExpenseItemsFilterYear={ expenseItemsFilterYearHandler } />
-			 
-        <ExpenseItem expenseItem={ expenseItems[0] } />
+ <ExpenseItemSCard className='expense-items'>
+  <ExpenseItemsFilterYear
+   expenseItemsFilterOptions='Filter by year'
+   expenseItemsFilterYearValue={ expenseItemsFilterYearValue }
+   onExpenseItemsFilterYear={ expenseItemsFilterYearHandler }
+  />
 
-        <ExpenseItem expenseItem={ expenseItems[1] } />
+  <ExpenseItemsChart filteredExpenseItems={ filteredExpenseItems } />
 
-        <ExpenseItem expenseItem={ expenseItems[2] } />
-      </ExpenseItemSCard>
+  <ExpenseItemsFiltered filteredExpenseItems={ filteredExpenseItems } />
+ </ExpenseItemSCard>
 
 
 
-    </div>
+</div>
 
   )
 

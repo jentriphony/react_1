@@ -1,5 +1,5 @@
 .add-expense-item {
-  background-color: #a892ee;
+  background-color: #222222;
   padding: 1rem;
   margin: 2rem auto;
   width: 50rem;
@@ -13,8 +13,8 @@
   font: inherit;
   cursor: pointer;
   padding: 1rem 2rem;
-  border: 1px solid #40005d;
-  background-color: #40005d;
+  border: 1px solid #432100;
+  background-color: #999990;
   color: white;
   border-radius: 12px;
   margin-right: 1rem;
@@ -22,17 +22,17 @@
 
 .add-expense-item button:hover,
 .add-expense-item button:active {
-  background-color: #510674;
-  border-color: #510674;
+  background-color: #999909;
+  border-color: #111100;
 }
 
 .add-expense-item button.alternative {
-  color: #220131;
+  color: #339900;
   border-color: transparent;
   background-color: transparent;
 }
 
 .add-expense-item button.alternative:hover,
 .add-expense-item button.alternative:active {
-  background-color: #ddb3f8;
+  background-color: #ddb300;
 }
