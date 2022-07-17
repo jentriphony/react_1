@@ -14,12 +14,12 @@ const ExpenseItems = dataProps => {
   const expenseItems = dataProps.expenseItems
 
   const [expenseItemsFilterYearValue, setExpenseItemsFilterYearValue] = useState('2005')
-  const filteredExpenseItems = expenseItems.filter(expenseItem => {
-   	return expenseItem.expenseDate.getFullYear() === Number(expenseItemsFilterYearValue)
-	})
-//	const [filteredExpenseItems, setFilteredExpenseItems] = useState(expenseItems.filter(expenseItem => {
+//	const [filteredExpenseItems, setFilteredExpenseItems] = useState( expenseItems.filter(expenseItem => {
 //		return expenseItem.expenseDate.getFullYear() === Number(expenseItemsFilterYearValue)
-//	}))
+  //	}))
+  const filteredExpenseItems = expenseItems.filter(expenseItem => {
+		return expenseItem.expenseDate.getFullYear() === Number(expenseItemsFilterYearValue)
+	})
 
 
 

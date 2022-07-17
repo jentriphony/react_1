@@ -15,14 +15,16 @@
   padding: 1rem 2rem;
   border: 1px solid #432100;
   background-color: #999990;
-  color: white;
+  font-weight: semibold;
+  color: #111111;
   border-radius: 12px;
   margin-right: 1rem;
 }
 
 .add-expense-item button:hover,
 .add-expense-item button:active {
-  background-color: #999909;
+  background-color: #111100;
+  color: #bbbbbb;
   border-color: #111100;
 }
 
