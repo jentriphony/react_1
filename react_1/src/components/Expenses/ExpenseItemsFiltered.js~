@@ -1,8 +1,0 @@
-const ExpenseItemsFiltered = dataProps => {
-
-	
-}
-
-
-
-export default ExpenseItemsFiltered
